@@ -1,0 +1,30 @@
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: NodeTool@0
+  inputs:
+    versionSpec: '18.x'
+  displayName: 'Use Node.js 18'
+
+- script: |
+    cd todo-frontend
+    npm install
+    npm run build
+  displayName: 'Build React frontend'
+
+
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '8.x.x' # or whatever version your project uses
+  displayName: 'Install .NET SDK'
+
+
+- script: |
+    cd ../todo-backend
+    dotnet build todo-backend.sln --configuration Release
+  displayName: 'Build .NET backend'
