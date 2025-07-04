@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "todo_solution": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7180",
+      "launchBrowser": false
+    }
+  }
+}
